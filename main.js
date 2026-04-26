@@ -84,21 +84,18 @@
     });
   }
 
-  // ==== Reel video sound toggle (radio: only one unmuted at a time) ====
+  // ==== Reel video: tap card to toggle sound (radio behavior) ====
   const reelCards = document.querySelectorAll('.reel-card[data-video]');
   reelCards.forEach((card) => {
     const video = card.querySelector('.reel-video');
-    const button = card.querySelector('.reel-sound');
-    if (!video || !button) return;
+    if (!video) return;
 
     const updateState = () => {
       card.classList.toggle('sound-on', !video.muted);
     };
 
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
+    card.addEventListener('click', (e) => {
       const willBeUnmuted = video.muted;
-      // Mute all other reels first
       reelCards.forEach((other) => {
         if (other !== card) {
           const otherVid = other.querySelector('.reel-video');
@@ -108,7 +105,7 @@
           }
         }
       });
-      video.muted = !willBeUnmuted ? true : false;
+      video.muted = !willBeUnmuted;
       if (willBeUnmuted) {
         video.play().catch(() => {});
       }

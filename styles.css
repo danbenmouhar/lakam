@@ -1753,27 +1753,28 @@ input.error, textarea.error, select.error { border-color: var(--red); }
 
 .reel-sound {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.875rem;
+  right: 0.875rem;
   z-index: 3;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(245, 240, 232, 0.25);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 240, 232, 0.2);
   color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s var(--ease-brutal);
-  cursor: pointer;
+  pointer-events: none;
+  opacity: 0.85;
 }
 
 .reel-sound svg {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
 
@@ -1781,18 +1782,13 @@ input.error, textarea.error, select.error { border-color: var(--red); }
 .reel-sound .icon-muted { display: block; }
 
 .reel-card.sound-on .reel-sound {
-  background: var(--red);
+  opacity: 1;
+  background: rgba(225, 14, 31, 0.85);
   border-color: var(--red);
 }
 
 .reel-card.sound-on .reel-sound .icon-unmuted { display: block; }
 .reel-card.sound-on .reel-sound .icon-muted { display: none; }
-
-.reel-sound:hover {
-  background: var(--red);
-  border-color: var(--red);
-  transform: scale(1.08);
-}
 
 .reel-card {
   position: relative;
@@ -1800,15 +1796,20 @@ input.error, textarea.error, select.error { border-color: var(--red); }
   aspect-ratio: 9 / 16;
   overflow: hidden;
   background: var(--black-card);
-  border: 2px solid var(--border-strong);
-  transition: all 0.4s var(--ease-brutal);
+  border: 1px solid var(--border-strong);
+  transition: border-color 0.4s var(--ease), box-shadow 0.5s var(--ease), transform 0.4s var(--ease-brutal);
   cursor: pointer;
 }
 
 .reel-card:hover {
+  border-color: rgba(225, 14, 31, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(225, 14, 31, 0.15);
+}
+
+.reel-card.sound-on {
   border-color: var(--red);
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 var(--red);
+  box-shadow: 0 0 0 1px var(--red), 0 0 50px rgba(225, 14, 31, 0.25);
 }
 
 .reel-thumb {
