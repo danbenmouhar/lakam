@@ -43,6 +43,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -51,8 +52,10 @@ body {
   color: var(--white);
   line-height: 1.5;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
   font-weight: 400;
   position: relative;
+  width: 100%;
 }
 
 /* ====== Grain texture overlay ====== */
@@ -702,6 +705,7 @@ em.italic {
   padding: var(--section-py) 0;
   background: var(--black-deep);
   position: relative;
+  overflow: hidden;
 }
 
 .formules::before {
