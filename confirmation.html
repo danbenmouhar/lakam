@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmation — LAKAM</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="navbar scrolled">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">la<span class="k">K</span>am</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-cta">Retour à l'accueil</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="reserver-page">
+    <div class="container">
+      <div class="confirmation">
+        <div class="confirmation-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+
+        <span class="script">Merci <span id="firstname">!</span></span>
+        <h1>Votre réservation est<br /><em class="text-red">confirmée.</em></h1>
+        <p id="confirmText">
+          Acompte reçu. Un récapitulatif a été envoyé à votre adresse email.
+          <br />
+          Rudy vous appellera dans les 24 h pour finaliser les derniers détails.
+        </p>
+
+        <div class="recap" id="recap" style="text-align:left; max-width:480px; margin: 2rem auto;">
+          <!-- Filled by JS -->
+        </div>
+
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2.5rem;">
+          <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="btn btn-primary">
+            Suivre @lakam.chef
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const firstname = params.get('firstname') || '';
+      const formule = params.get('formule') || '';
+      const guests = params.get('guests') || '';
+      const date = params.get('date');
+      const total = params.get('total');
+      const deposit = params.get('deposit');
+      const email = params.get('email') || 'votre adresse email';
+
+      if (firstname) document.getElementById('firstname').textContent = firstname + ' !';
+
+      const dateFmt = date
+        ? new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+        : '—';
+
+      const recap = document.getElementById('recap');
+      if (formule && total) {
+        const balance = (parseInt(total, 10) - parseInt(deposit, 10));
+        recap.innerHTML = `
+          <div class="recap-row"><span class="label">Formule</span><span class="value">${formule}</span></div>
+          <div class="recap-row"><span class="label">Convives</span><span class="value">${guests} pers</span></div>
+          <div class="recap-row"><span class="label">Date</span><span class="value">${dateFmt}</span></div>
+          <div class="recap-row"><span class="label">Total</span><span class="value">${total} €</span></div>
+          <div class="recap-row"><span class="label">Acompte payé</span><span class="value" style="color:var(--red);font-weight:600;">${deposit} €</span></div>
+          <div class="recap-row"><span class="label">Solde le jour J</span><span class="value">${balance} €</span></div>
+        `;
+      } else {
+        recap.style.display = 'none';
+      }
+
+      const confirmText = document.getElementById('confirmText');
+      if (email && email !== 'votre adresse email') {
+        confirmText.innerHTML = `Acompte reçu. Un récapitulatif a été envoyé à <strong style="color:var(--red)">${email}</strong>.<br />Rudy vous appellera dans les 24 h pour finaliser les derniers détails.`;
+      }
+    })();
+  </script>
+</body>
+</html>

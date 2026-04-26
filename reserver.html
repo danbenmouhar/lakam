@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réserver une date — LAKAM</title>
+  <meta name="description" content="Réservez votre soirée LAKAM en ligne. Acompte 30 %, confirmation immédiate." />
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ Navbar (simplifiée) ============ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">la<span class="k">K</span>am</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">Le chef</a></li>
+        <li><a href="index.html#formules">Formules</a></li>
+        <li><a href="index.html#gallery">Galerie</a></li>
+        <li><a href="index.html" class="nav-cta">Retour</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="reserver-page">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="reserver-header">
+        <span class="eyebrow">Réservation</span>
+        <h1>Réservez<br /><em class="text-red">votre soirée.</em></h1>
+        <p>Quelques minutes, et c'est calé. Acompte 30 %, le solde se règle le jour J.</p>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress" id="progress" style="--progress: 0%">
+        <div class="progress-step active" data-step="1">
+          <div class="progress-dot">1</div>
+          <div class="progress-label">Formule</div>
+        </div>
+        <div class="progress-step" data-step="2">
+          <div class="progress-dot">2</div>
+          <div class="progress-label">Lieu</div>
+        </div>
+        <div class="progress-step" data-step="3">
+          <div class="progress-dot">3</div>
+          <div class="progress-label">Vos infos</div>
+        </div>
+        <div class="progress-step" data-step="4">
+          <div class="progress-dot">4</div>
+          <div class="progress-label">Acompte</div>
+        </div>
+      </div>
+
+      <!-- Wizard -->
+      <form class="wizard" id="wizard" novalidate>
+
+        <!-- Step 1: Formule -->
+        <section class="step-panel active" data-panel="1">
+          <h2>Choisissez votre formule</h2>
+          <p>Vous pourrez ajouter le dessert "Sweet Finish" à l'étape suivante.</p>
+
+          <div class="formule-options" id="formuleOptions">
+            <label class="formule-option" data-formule="burger">
+              <input type="radio" name="formule" value="burger" />
+              <div class="formule-option-img"><img src="images/burger.jpg" alt="" /></div>
+              <div class="formule-option-body">
+                <div class="formule-option-name">Burger Night</div>
+                <div class="formule-option-price">49 €/pers · dès 6 pers</div>
+              </div>
+            </label>
+            <label class="formule-option" data-formule="signature">
+              <input type="radio" name="formule" value="signature" />
+              <div class="formule-option-img"><img src="images/chef-action.jpg" alt="" /></div>
+              <div class="formule-option-body">
+                <div class="formule-option-name">Menu Signature</div>
+                <div class="formule-option-price">75 €/pers · dès 8 pers</div>
+              </div>
+            </label>
+            <label class="formule-option" data-formule="mexican">
+              <input type="radio" name="formule" value="mexican" />
+              <div class="formule-option-img"><img src="images/tacos.jpg" alt="" /></div>
+              <div class="formule-option-body">
+                <div class="formule-option-name">Mexican Vibes</div>
+                <div class="formule-option-price">45 €/pers · dès 8 pers</div>
+              </div>
+            </label>
+            <label class="formule-option" data-formule="hotdog">
+              <input type="radio" name="formule" value="hotdog" />
+              <div class="formule-option-img"><img src="images/hotdogs.jpg" alt="" /></div>
+              <div class="formule-option-body">
+                <div class="formule-option-name">Hot Dog & Co</div>
+                <div class="formule-option-price">39 €/pers · dès 6 pers</div>
+              </div>
+            </label>
+            <label class="formule-option" data-formule="tenders">
+              <input type="radio" name="formule" value="tenders" />
+              <div class="formule-option-img"><img src="images/tenders.jpg" alt="" /></div>
+              <div class="formule-option-body">
+                <div class="formule-option-name">Tenders Bar</div>
+                <div class="formule-option-price">35 €/pers · dès 6 pers</div>
+              </div>
+            </label>
+            <label class="formule-option" data-formule="sweet-only">
+              <input type="radio" name="formule" value="sweet-only" />
+              <div class="formule-option-img"><img src="images/waffles.jpg" alt="" /></div>
+              <div class="formule-option-body">
+                <div class="formule-option-name">Sweet Finish (seul)</div>
+                <div class="formule-option-price">19 €/pers · dès 10 pers</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="guests">Nombre de convives</label>
+              <input type="number" id="guests" name="guests" min="6" max="80" placeholder="Ex. 10" />
+            </div>
+            <div class="field">
+              <label for="date">Date souhaitée</label>
+              <input type="date" id="date" name="date" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>
+              <input type="checkbox" id="addSweet" name="addSweet" style="width:auto; margin-right:0.5rem;" />
+              <span style="text-transform:none; letter-spacing:0; font-size:0.9375rem; color:var(--white-soft);">Ajouter le dessert <strong style="color:var(--red)">Sweet Finish</strong> (+ 19 €/pers)</span>
+            </label>
+          </div>
+
+          <div class="wizard-nav">
+            <span></span>
+            <button type="button" class="btn btn-primary" data-next>
+              Continuer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 2: Lieu -->
+        <section class="step-panel" data-panel="2">
+          <h2>Où est-ce qu'on cuisine ?</h2>
+          <p>Adresse complète et quelques détails pratiques pour préparer la venue.</p>
+
+          <div class="field">
+            <label for="address">Adresse</label>
+            <input type="text" id="address" name="address" placeholder="12 rue de la République" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="zip">Code postal</label>
+              <input type="text" id="zip" name="zip" placeholder="92100" />
+            </div>
+            <div class="field">
+              <label for="city">Ville</label>
+              <input type="text" id="city" name="city" placeholder="Boulogne-Billancourt" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="access">Étage / code d'accès / précisions</label>
+            <input type="text" id="access" name="access" placeholder="3e étage, code 1234A, ascenseur OK" />
+          </div>
+
+          <div class="field">
+            <label for="kitchen">Espace cuisine disponible</label>
+            <select id="kitchen" name="kitchen">
+              <option value="">Sélectionnez —</option>
+              <option value="spacious">Cuisine spacieuse, plaques + four</option>
+              <option value="standard">Cuisine standard, plan de travail OK</option>
+              <option value="small">Petite cuisine, je peux libérer un espace</option>
+              <option value="outdoor">Extérieur (terrasse, jardin)</option>
+            </select>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline btn-back" data-prev>← Retour</button>
+            <button type="button" class="btn btn-primary" data-next>
+              Continuer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 3: Vos infos -->
+        <section class="step-panel" data-panel="3">
+          <h2>Faisons connaissance</h2>
+          <p>Pour qu'on puisse vous confirmer la réservation et vous appeler si besoin.</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="firstname">Prénom</label>
+              <input type="text" id="firstname" name="firstname" placeholder="Sarah" />
+            </div>
+            <div class="field">
+              <label for="lastname">Nom</label>
+              <input type="text" id="lastname" name="lastname" placeholder="Martinez" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.fr" />
+          </div>
+
+          <div class="field">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78" />
+          </div>
+
+          <div class="field">
+            <label for="message">Message (allergies, demandes spéciales)</label>
+            <textarea id="message" name="message" placeholder="Anniversaire surprise pour mon mari, 2 invités végétariens, allergie à l'arachide pour 1 enfant…"></textarea>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline btn-back" data-prev>← Retour</button>
+            <button type="button" class="btn btn-primary" data-next>
+              Voir le récapitulatif
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 4: Recap & paiement -->
+        <section class="step-panel" data-panel="4">
+          <h2>Récapitulatif & acompte</h2>
+          <p>Vérifiez votre commande, validez l'acompte de 30 %. Le solde se règle le jour J.</p>
+
+          <div class="recap" id="recap">
+            <!-- Rempli dynamiquement -->
+          </div>
+
+          <div class="deposit-note">
+            <strong>Acompte 30 %</strong> &nbsp;·&nbsp; Le solde (70 %) est dû le jour de la prestation.
+          </div>
+
+          <div class="card-form">
+            <div class="card-form-header">
+              <span class="card-form-title">Paiement sécurisé</span>
+              <span class="card-brands">VISA · MASTERCARD · AMEX</span>
+            </div>
+
+            <div class="field">
+              <label for="cardName">Nom sur la carte</label>
+              <input type="text" id="cardName" name="cardName" placeholder="SARAH MARTINEZ" />
+            </div>
+
+            <div class="field">
+              <label for="cardNumber">Numéro de carte</label>
+              <input type="text" id="cardNumber" name="cardNumber" placeholder="4242 4242 4242 4242" maxlength="19" inputmode="numeric" />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="cardExp">Expiration</label>
+                <input type="text" id="cardExp" name="cardExp" placeholder="MM/AA" maxlength="5" inputmode="numeric" />
+              </div>
+              <div class="field">
+                <label for="cardCvc">CVC</label>
+                <input type="text" id="cardCvc" name="cardCvc" placeholder="123" maxlength="4" inputmode="numeric" />
+              </div>
+            </div>
+          </div>
+
+          <div class="secure-note">
+            <span>●</span> Paiement chiffré · données bancaires non stockées
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline btn-back" data-prev>← Retour</button>
+            <button type="submit" class="btn btn-primary" id="payBtn">
+              Confirmer & payer l'acompte
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+      </form>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+  <script src="reserver.js"></script>
+</body>
+</html>
