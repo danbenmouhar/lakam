@@ -1721,7 +1721,7 @@ textarea { resize: vertical; min-height: 100px; }
 .error-msg { color: var(--red); font-size: 0.8125rem; margin-top: 0.5rem; font-weight: 600; }
 input.error, textarea.error, select.error { border-color: var(--red); }
 
-/* ============ Reels (Instagram embeds) ============ */
+/* ============ Reels (custom video cards) ============ */
 .reels {
   padding: var(--section-py) 0;
   background: var(--black-deep);
@@ -1732,18 +1732,19 @@ input.error, textarea.error, select.error { border-color: var(--red); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  align-items: start;
-  justify-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .reel-card {
-  width: 100%;
-  max-width: 380px;
-  border: 2px solid var(--border-strong);
-  background: var(--black);
-  padding: 4px;
-  transition: all 0.4s var(--ease-brutal);
   position: relative;
+  display: block;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: var(--black-card);
+  border: 2px solid var(--border-strong);
+  transition: all 0.4s var(--ease-brutal);
+  cursor: pointer;
 }
 
 .reel-card:hover {
@@ -1752,22 +1753,126 @@ input.error, textarea.error, select.error { border-color: var(--red); }
   box-shadow: 6px 6px 0 var(--red);
 }
 
-.reel-card .instagram-media {
-  background: var(--black) !important;
-  border: none !important;
-  margin: 0 !important;
-  min-width: unset !important;
-  max-width: 100% !important;
-  width: 100% !important;
+.reel-thumb {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.reel-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.05);
+  transform: scale(1.08);
+  animation: reelKenBurns 14s ease-in-out infinite alternate;
+}
+
+.reel-card:nth-child(2) .reel-thumb img { animation-delay: -4s; animation-duration: 16s; }
+.reel-card:nth-child(3) .reel-thumb img { animation-delay: -8s; animation-duration: 18s; }
+
+@keyframes reelKenBurns {
+  0%   { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1.18) translate(2%, 1.5%); }
+}
+
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.85) 100%);
+  transition: background 0.4s var(--ease);
+}
+
+.reel-card:hover .reel-overlay {
+  background:
+    linear-gradient(180deg, rgba(225,14,31,0.25) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.95) 100%);
+}
+
+.reel-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(245, 240, 232, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: all 0.4s var(--ease-brutal);
+}
+
+.reel-play svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+}
+
+.reel-card:hover .reel-play {
+  background: var(--red);
+  border-color: var(--red);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 40px var(--red-glow);
+}
+
+.reel-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: stretch;
+  margin-top: auto;
+  position: relative;
+}
+
+.reel-meta::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--red);
+}
+
+.reel-tag {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1;
+}
+
+.reel-duration {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(245, 240, 232, 0.75);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(245, 240, 232, 0.25);
 }
 
 @media (max-width: 1000px) {
-  .reels-grid { grid-template-columns: repeat(2, 1fr); }
+  .reels-grid { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
+  .reel-card:nth-child(3) { display: none; }
 }
 
-@media (max-width: 700px) {
-  .reels-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .reel-card { max-width: 460px; }
+@media (max-width: 600px) {
+  .reels-grid { grid-template-columns: 1fr; max-width: 360px; gap: 1.25rem; }
+  .reel-card:nth-child(3) { display: block; }
 }
 
 /* ============ Dispo strip ============ */
