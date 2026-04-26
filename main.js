@@ -84,6 +84,59 @@
     });
   }
 
+  // ==== Reel video sound toggle (radio: only one unmuted at a time) ====
+  const reelCards = document.querySelectorAll('.reel-card[data-video]');
+  reelCards.forEach((card) => {
+    const video = card.querySelector('.reel-video');
+    const button = card.querySelector('.reel-sound');
+    if (!video || !button) return;
+
+    const updateState = () => {
+      card.classList.toggle('sound-on', !video.muted);
+    };
+
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willBeUnmuted = video.muted;
+      // Mute all other reels first
+      reelCards.forEach((other) => {
+        if (other !== card) {
+          const otherVid = other.querySelector('.reel-video');
+          if (otherVid) {
+            otherVid.muted = true;
+            other.classList.remove('sound-on');
+          }
+        }
+      });
+      video.muted = !willBeUnmuted ? true : false;
+      if (willBeUnmuted) {
+        video.play().catch(() => {});
+      }
+      updateState();
+    });
+
+    updateState();
+  });
+
+  // Auto-mute reels when they scroll out of view
+  if (reelCards.length) {
+    const muteIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            const v = entry.target.querySelector('.reel-video');
+            if (v && !v.muted) {
+              v.muted = true;
+              entry.target.classList.remove('sound-on');
+            }
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    reelCards.forEach((card) => muteIO.observe(card));
+  }
+
   // ==== Smooth scroll for anchor links (in case scroll-behavior fails) ====
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
