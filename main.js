@@ -6,29 +6,20 @@
 (() => {
   // ==== Navbar scroll state ====
   const navbar = document.getElementById('navbar');
-  let lastY = window.scrollY;
-  let ticking = false;
+  let lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
 
   const onScroll = () => {
-    const y = window.scrollY;
-    if (y > 60) navbar.classList.add('scrolled');
+    const y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (y > 50) navbar.classList.add('scrolled');
     else navbar.classList.remove('scrolled');
 
-    // Hide on scroll down, show on scroll up (mobile via CSS media query)
-    const delta = y - lastY;
-    if (y > 120 && delta > 4) navbar.classList.add('hidden');
-    else if (delta < -4 || y < 60) navbar.classList.remove('hidden');
+    if (y > 100 && y > lastY) navbar.classList.add('hidden');
+    else if (y < lastY || y < 50) navbar.classList.remove('hidden');
 
     lastY = y;
-    ticking = false;
   };
 
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(onScroll);
-      ticking = true;
-    }
-  }, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   // ==== Mobile menu ====

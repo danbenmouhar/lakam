@@ -222,12 +222,15 @@ em.italic {
 .navbar.scrolled {
   background: rgba(5, 5, 5, 0.92);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 0.875rem 0;
   border-bottom-color: var(--border);
 }
 
-@media (max-width: 900px) {
-  .navbar.hidden { transform: translateY(-110%); }
+.navbar.hidden {
+  transform: translateY(-105%);
+  -webkit-transform: translateY(-105%);
+  pointer-events: none;
 }
 
 .nav-inner {
