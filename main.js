@@ -84,39 +84,6 @@
     });
   }
 
-  // ==== Reel video modal ====
-  const videoModal = document.getElementById('videoModal');
-  const videoModalIframe = document.getElementById('videoModalIframe');
-  const videoModalClose = document.getElementById('videoModalClose');
-
-  if (videoModal && videoModalIframe) {
-    document.querySelectorAll('.reel-card').forEach((card) => {
-      card.addEventListener('click', (e) => {
-        const href = card.getAttribute('href');
-        if (!href || !href.includes('instagram.com')) return;
-        e.preventDefault();
-        const embedUrl = href.replace(/\/$/, '') + '/embed/';
-        videoModalIframe.src = embedUrl;
-        videoModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    const closeVideoModal = () => {
-      videoModalIframe.src = '';
-      videoModal.classList.remove('open');
-      document.body.style.overflow = '';
-    };
-
-    videoModalClose.addEventListener('click', closeVideoModal);
-    videoModal.addEventListener('click', (e) => {
-      if (e.target === videoModal) closeVideoModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && videoModal.classList.contains('open')) closeVideoModal();
-    });
-  }
-
   // ==== Smooth scroll for anchor links (in case scroll-behavior fails) ====
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
