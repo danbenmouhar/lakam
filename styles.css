@@ -1925,7 +1925,19 @@ input.error, textarea.error, select.error { border-color: var(--red); }
 }
 
 @media (max-width: 800px) {
-  .reels-grid, .reels-grid.two-cols { grid-template-columns: 1fr; max-width: 400px; gap: 1.5rem; }
+  .reels-grid,
+  .reels-grid.two-cols {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1.5rem;
+    justify-items: center;
+  }
+  .reel-card {
+    width: 100%;
+    max-width: 340px;
+  }
 }
 
 /* ============ Dispo strip ============ */
