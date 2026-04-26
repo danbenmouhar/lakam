@@ -226,6 +226,10 @@ em.italic {
   border-bottom-color: var(--border);
 }
 
+@media (max-width: 900px) {
+  .navbar.hidden { transform: translateY(-110%); }
+}
+
 .nav-inner {
   display: flex;
   align-items: center;
