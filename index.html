@@ -9,7 +9,40 @@
   <meta property="og:description" content="Cuisine street-food premium servie chez vous." />
   <meta property="og:image" content="images/chef-action.jpg" />
   <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+
+  <!-- ============ Schema.org (SEO Google rich results) ============ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "LAKAM",
+    "description": "Chef à domicile dans le 92 spécialisé street-food premium : burgers, tacos, hot dogs, gaufres dessert.",
+    "image": "https://lakam.vercel.app/images/chef-action.jpg",
+    "url": "https://lakam.vercel.app",
+    "telephone": "+33600000000",
+    "email": "contact@lakam.fr",
+    "priceRange": "€€",
+    "servesCuisine": ["Street Food", "Burgers", "Tacos", "American"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Hauts-de-Seine",
+      "addressCountry": "FR"
+    },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Hauts-de-Seine" },
+      { "@type": "AdministrativeArea", "name": "Paris" },
+      { "@type": "AdministrativeArea", "name": "Île-de-France" }
+    ],
+    "founder": { "@type": "Person", "name": "Rudy" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "47"
+    },
+    "sameAs": ["https://instagram.com/lakam.chef"]
+  }
+  </script>
 </head>
 <body>
 
@@ -20,8 +53,8 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">Le chef</a></li>
         <li><a href="#formules">Formules</a></li>
-        <li><a href="#gallery">Galerie</a></li>
-        <li><a href="#steps">Process</a></li>
+        <li><a href="#reels">Reels</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="reserver.html" class="nav-cta">Réserver</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -241,6 +274,37 @@
     </div>
   </section>
 
+  <!-- ============ Reels (Instagram embeds) ============ -->
+  <section class="reels" id="reels">
+    <div class="container">
+      <div class="formules-header reveal" style="text-align:center;">
+        <span class="eyebrow">En cuisine</span>
+        <h2 class="section-title">Rudy, <em class="italic">en action.</em></h2>
+        <p class="section-subtitle" style="margin-left:auto; margin-right:auto;">Trois reels qui valent mille mots. Et une faim de loup.</p>
+      </div>
+
+      <div class="reels-grid">
+        <div class="reel-card reveal">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVmAkWtCPKl/" data-instgrm-version="14"></blockquote>
+        </div>
+        <div class="reel-card reveal reveal-delay-1">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DV4HP1RCIJH/" data-instgrm-version="14"></blockquote>
+        </div>
+        <div class="reel-card reveal reveal-delay-2">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSfmS1miPPI/" data-instgrm-version="14"></blockquote>
+        </div>
+      </div>
+
+      <div class="reels-cta reveal" style="text-align:center; margin-top:3rem;">
+        <a href="https://instagram.com/lakam.chef" target="_blank" rel="noopener" class="btn btn-outline">
+          Tous les reels sur @lakam.chef
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <script async src="https://www.instagram.com/embed.js"></script>
+  </section>
+
   <!-- ============ Gallery ============ -->
   <section class="gallery" id="gallery">
     <div class="container">
@@ -352,6 +416,96 @@
     </div>
   </section>
 
+  <!-- ============ Next available strip ============ -->
+  <section class="dispo-strip">
+    <div class="container">
+      <div class="dispo-inner reveal">
+        <div class="dispo-pulse"><span></span></div>
+        <div class="dispo-text">
+          <span class="dispo-label">Prochain créneau dispo</span>
+          <span class="dispo-date" id="dispoDate">—</span>
+        </div>
+        <a href="reserver.html" class="btn btn-primary dispo-cta">Bloquer cette date</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="formules-header reveal" style="text-align:center;">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">Les questions <em class="italic">qu'on me pose.</em></h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>
+            <span>Vous vous déplacez où ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Tout le 92 sans frais. Paris intra-muros : +30 €. Reste de l'Île-de-France et au-delà : sur devis selon distance.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Combien de temps avant de réserver ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">7 jours minimum pour caler les courses et le matériel. Pour les pics (Noël, Nouvel An, été), comptez 3–4 semaines, ça part vite.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Vous gérez les allergies / régimes spéciaux ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Évidemment. Indiquez les allergies, intolérances, régimes (végétarien, halal, sans gluten…) dans le formulaire. Rudy adapte le menu à la commande, sans surcoût.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Et si j'ai pas de cuisine équipée ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Pas de stress — Rudy débarque avec son matériel pro (plaques, planchas, ustensiles, vaisselle). Il lui faut juste un plan de travail et une prise.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Le prix inclut quoi exactement ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Tout : ingrédients frais, matériel, vaisselle jetable haut de gamme (sur demande, vraie vaisselle possible avec supplément), service de A à Z, et la cuisine impeccable en partant. Pas de surprise.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Comment se passe le paiement ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Acompte de 30 % à la réservation pour bloquer la date. Le solde (70 %) se règle le jour J, en CB ou virement, après la presta.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Annulation, c'est possible ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Annulation gratuite jusqu'à J-7. Entre J-7 et J-3, l'acompte reste acquis. Moins de 72 h avant : facturation complète (les courses sont déjà faites).</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Vous faites les soirées d'entreprise ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">Oui — séminaires, team-buildings, lancements, after-works. Devis sur-mesure dès 15 personnes. CSE bienvenus, on facture en HT.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CTA banner ============ -->
   <section class="cta-banner">
     <div class="cta-bg"><img src="images/hotdogs.jpg" alt="" /></div>
@@ -408,11 +562,29 @@
     </div>
   </footer>
 
+  <!-- ============ WhatsApp floating button ============ -->
+  <a href="https://wa.me/33600000000?text=Bonjour%20Rudy%2C%20j%27aimerais%20avoir%20des%20infos%20sur%20une%20presta%20LAKAM" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
     <img id="lightboxImg" src="" alt="" />
   </div>
 
-  <script src="main.js?v=3"></script>
+  <script src="main.js?v=4"></script>
+  <script>
+    // Compute next available date (J+8, skipping Mondays = jour de repos)
+    (() => {
+      const el = document.getElementById('dispoDate');
+      if (!el) return;
+      const d = new Date();
+      d.setDate(d.getDate() + 8);
+      while (d.getDay() === 1) d.setDate(d.getDate() + 1);
+      el.textContent = d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+    })();
+  </script>
 </body>
 </html>

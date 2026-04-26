@@ -1720,3 +1720,238 @@ textarea { resize: vertical; min-height: 100px; }
 
 .error-msg { color: var(--red); font-size: 0.8125rem; margin-top: 0.5rem; font-weight: 600; }
 input.error, textarea.error, select.error { border-color: var(--red); }
+
+/* ============ Reels (Instagram embeds) ============ */
+.reels {
+  padding: var(--section-py) 0;
+  background: var(--black-deep);
+  position: relative;
+}
+
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  justify-items: center;
+}
+
+.reel-card {
+  width: 100%;
+  max-width: 380px;
+  border: 2px solid var(--border-strong);
+  background: var(--black);
+  padding: 4px;
+  transition: all 0.4s var(--ease-brutal);
+  position: relative;
+}
+
+.reel-card:hover {
+  border-color: var(--red);
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--red);
+}
+
+.reel-card .instagram-media {
+  background: var(--black) !important;
+  border: none !important;
+  margin: 0 !important;
+  min-width: unset !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+@media (max-width: 1000px) {
+  .reels-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .reels-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .reel-card { max-width: 460px; }
+}
+
+/* ============ Dispo strip ============ */
+.dispo-strip {
+  background: linear-gradient(90deg, var(--red-deep) 0%, var(--red) 50%, var(--red-deep) 100%);
+  padding: 1.25rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.dispo-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.dispo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.dispo-pulse {
+  width: 14px;
+  height: 14px;
+  background: var(--white);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dispo-pulse span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--white);
+  animation: dispoPulse 2s ease-out infinite;
+}
+
+@keyframes dispoPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.dispo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dispo-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+}
+
+.dispo-date {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.dispo-cta {
+  background: var(--black) !important;
+  border-color: var(--black) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3) !important;
+}
+
+.dispo-cta:hover {
+  background: var(--white) !important;
+  color: var(--red) !important;
+  border-color: var(--white) !important;
+}
+
+@media (max-width: 700px) {
+  .dispo-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  .dispo-text { align-items: center; }
+}
+
+/* ============ FAQ ============ */
+.faq {
+  padding: var(--section-py) 0;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-strong);
+  padding: 0;
+  transition: all 0.3s var(--ease);
+}
+
+.faq-item[open] {
+  background: var(--black-card);
+  border-color: var(--red);
+}
+
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 1.25rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: color 0.2s ease;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary:hover { color: var(--red); }
+
+.faq-icon {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--red);
+  font-weight: 400;
+  transition: transform 0.3s var(--ease-brutal);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  line-height: 1;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 1.25rem 1.75rem;
+  color: var(--white-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-family: var(--font-sans);
+}
+
+/* ============ WhatsApp floating button ============ */
+.wa-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.6);
+  animation: waPulse 2.5s ease-in-out infinite;
+  transition: transform 0.3s var(--ease-brutal);
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
+  background: #1ea952;
+}
+
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  50%      { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5), 0 0 0 16px rgba(37, 211, 102, 0); }
+}
+
+@media (max-width: 600px) {
+  .wa-float { bottom: 1rem; right: 1rem; width: 56px; height: 56px; }
+  .wa-float svg { width: 26px; height: 26px; }
+}
